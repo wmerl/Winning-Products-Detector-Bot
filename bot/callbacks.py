@@ -1,6 +1,15 @@
-from pyrogram import filters
+from pyrogram import filters, Client
 from bot import app
 from vars import Vars
+
+
+@app.on_message(filters.command(['start']) & filters.private)
+async def start(c: Client, m):
+    chat_id = m.chat.id
+    await c.send_message(
+        chat_id=chat_id,
+        text="I'm Live"
+    )
 
 
 @app.on_message(filters.channel & filters.text)
