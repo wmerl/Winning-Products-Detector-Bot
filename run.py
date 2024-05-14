@@ -13,13 +13,12 @@ def index():
     return "Bot is Live!"
     
 
-if __name__ == '__main__':
 
-    threading.Thread(target=web_app.run, args=()).start()
+threading.Thread(target=web_app.run, args=()).start()
 
-    app.start()
-    print("I'm live")
+app.start()
+print("I'm live")
 
-    idle()
-    app.stop()
+idle()
+app.stop()
 
