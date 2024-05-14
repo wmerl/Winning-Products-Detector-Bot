@@ -9,12 +9,12 @@ web_app = Flask(__name__)
 
 
 @web_app.route('/')
-def index():
+def web_app_live():
     return "Web App is Live!"
 
 
 @web_app.route('/run')
-def index():
+def web_app_bot():
     threading.Thread(target=web_app.run, args=()).start()
 
     app.start()
