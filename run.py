@@ -13,17 +13,15 @@ def web_app_live():
     return "Web App is Live!"
 
 
-@web_app.route('/run')
-def web_app_bot():
-    threading.Thread(target=web_app.run, args=()).start()
+if __name__ == '__main__':
 
     app.start()
+    threading.Thread(target=web_app.run, args=("0.0.0.0", 8080), daemon=True).start()
+
     print("I'm live")
-    
+
     idle()
     app.stop()
-    
-    return "Bot is Live!"
     
 
 
