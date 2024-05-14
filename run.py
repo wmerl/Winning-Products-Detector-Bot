@@ -2,7 +2,16 @@ import threading
 
 from pyrogram import idle
 from bot import app
-from web import web_app
+from flask import Flask
+
+
+web_app = Flask(__name__)
+
+
+@web_app.route('/')
+def index():
+    return "Bot is Live!"
+    
 
 if __name__ == '__main__':
 
