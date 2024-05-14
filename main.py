@@ -7,7 +7,7 @@ from vars import Vars
 from flask import Flask
 
 app = Client(
-    "potato_motato",
+    "TendencyWins",
     api_id=Vars.API_ID, api_hash=Vars.API_HASH
 )
 
