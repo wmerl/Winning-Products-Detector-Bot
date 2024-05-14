@@ -1,6 +1,15 @@
+import threading
+
+from pyrogram import idle
 from pyrogram import filters, Client
-from bot import app
+
 from vars import Vars
+from flask import Flask
+
+app = Client(
+    "potato_motato",
+    api_id=Vars.API_ID, api_hash=Vars.API_HASH
+)
 
 
 @app.on_message(filters.command(['start']) & filters.private)
@@ -63,4 +72,23 @@ async def forward_message_video(c, m):
             caption_entities=caption_entities,
             reply_to_message_id=16
         )
+
+
+web_app = Flask(__name__)
+
+
+@web_app.route('/')
+def web_app_live():
+    return "Web App is Live!"
+
+
+if __name__ == '__main__':
+
+    app.start()
+    threading.Thread(target=web_app.run, args=("0.0.0.0", 8080), daemon=True).start()
+
+    print("I'm live")
+
+    idle()
+    app.stop()
 
