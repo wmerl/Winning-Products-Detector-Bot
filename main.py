@@ -27,13 +27,13 @@ async def forward_message_text(c, m):
     entities = m.entities
     msg_text = m.text
 
-    if chat_id == Vars.FROM_CHANNEL_ID:
+    if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
 
         await c.send_message(
-            chat_id=Vars.TO_GROUP_ID,
+            chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             text=msg_text,
             entities=entities,
-            reply_to_message_id=16
+            reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
 
@@ -46,13 +46,13 @@ async def forward_message_photo(c, m):
     caption = m.caption
     photo = m.photo.file_id
 
-    if chat_id == Vars.FROM_CHANNEL_ID:
+    if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
         await c.send_photo(
-            chat_id=Vars.TO_GROUP_ID,
+            chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             photo=photo,
             caption=caption,
             caption_entities=caption_entities,
-            reply_to_message_id=16
+            reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
 
@@ -64,13 +64,13 @@ async def forward_message_video(c, m):
     caption = m.caption
     video = m.video.file_id
 
-    if chat_id == Vars.FROM_CHANNEL_ID:
+    if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
         await c.send_video(
-            chat_id=Vars.TO_GROUP_ID,
+            chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             video=video,
             caption=caption,
             caption_entities=caption_entities,
-            reply_to_message_id=16
+            reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
 
