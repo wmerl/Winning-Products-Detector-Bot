@@ -23,27 +23,35 @@ async def start(c: Client, m):
 
 
 @app.on_message(filters.channel & filters.text)
-async def forward_message_text(c, m):
+async def forward_message_text(c: Client, m):
     chat_id = m.chat.id
     # entities = m.entities
     # msg_text = m.text
 
     now = datetime.now()
     date_hour = now.strftime("%Y-%m-%d %H:%M")
-    caption = Vars.CAPTION.format(date_hour=date_hour)
 
     if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
 
+        # Send message to the Topic
         await c.send_message(
             chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
-            text=caption,
+            text=Vars.TOPIC_CAPTION.format(date_hour=date_hour),
+            # entities=entities,
+            reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
+        )
+
+        # Sending message to Winner & Viral Products Channel
+        await c.send_message(
+            chat_id=Vars.WINNER_AND_VIRAL_PRODUCTS_CHANNEL_ID,
+            text=Vars.PUBIC_CHANNEL_CAPTION.format(date_hour=date_hour),
             # entities=entities,
             reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
 
 @app.on_message(filters.channel & filters.photo)
-async def forward_message_photo(c, m):
+async def forward_message_photo(c: Client, m):
     print(m)
 
     chat_id = m.chat.id
@@ -53,20 +61,30 @@ async def forward_message_photo(c, m):
 
     now = datetime.now()
     date_hour = now.strftime("%Y-%m-%d %H:%M")
-    caption = Vars.CAPTION.format(date_hour=date_hour)
 
     if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
+
+        # Send message to the Topic
         await c.send_photo(
             chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             photo=photo,
-            caption=caption,
-            # caption_entities=caption_entities,
+            caption=Vars.TOPIC_CAPTION.format(date_hour=date_hour),
+            # entities=entities,
+            reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
+        )
+
+        # Sending message to Winner & Viral Products Channel
+        await c.send_photo(
+            chat_id=Vars.WINNER_AND_VIRAL_PRODUCTS_CHANNEL_ID,
+            photo=photo,
+            caption=Vars.PUBIC_CHANNEL_CAPTION.format(date_hour=date_hour),
+            # entities=entities,
             reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
 
 @app.on_message(filters.channel & filters.video)
-async def forward_message_video(c, m):
+async def forward_message_video(c: Client, m):
 
     chat_id = m.chat.id
     # caption_entities = m.caption_entities
@@ -75,15 +93,24 @@ async def forward_message_video(c, m):
 
     now = datetime.now()
     date_hour = now.strftime("%Y-%m-%d %H:%M")
-    caption = Vars.CAPTION.format(date_hour=date_hour)
-
 
     if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
+
+        # Send message to the Topic
         await c.send_video(
             chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             video=video,
-            caption=caption,
-            # caption_entities=caption_entities,
+            caption=Vars.TOPIC_CAPTION.format(date_hour=date_hour),
+            # entities=entities,
+            reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
+        )
+
+        # Sending message to Winner & Viral Products Channel
+        await c.send_video(
+            chat_id=Vars.WINNER_AND_VIRAL_PRODUCTS_CHANNEL_ID,
+            video=video,
+            caption=Vars.PUBIC_CHANNEL_CAPTION.format(date_hour=date_hour),
+            # entities=entities,
             reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
