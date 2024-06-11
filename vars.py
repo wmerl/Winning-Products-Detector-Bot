@@ -16,3 +16,12 @@ class Vars(object):
     DROPSHIPPING_COMMUNITY_GROUP_ID: int = -1001905653988
     SEGNALI_PODOTTI_TOPIC_ID: int = 5539
 
+    CAPTION = """
+📈*Segnalazione Prodotto Virale!*
+
+{date_hour}
+> *Tendency Wins ha scovato un nuovo prodotto recentemente poporale su TikTok in base a dati CTR, Impression, like & real views.*
+
+Usa sempre test prima di ordinare stock prodotti ed analizza bene il mercato ed i comptitor per evitare perdite!
+    """.strip()
+

@@ -5,6 +5,7 @@ from pyrogram import filters, Client
 
 from vars import Vars
 from flask import Flask
+from datetime import datetime
 
 app = Client(
     "TendencyWins",
@@ -24,15 +25,19 @@ async def start(c: Client, m):
 @app.on_message(filters.channel & filters.text)
 async def forward_message_text(c, m):
     chat_id = m.chat.id
-    entities = m.entities
-    msg_text = m.text
+    # entities = m.entities
+    # msg_text = m.text
+
+    now = datetime.now()
+    date_hour = now.strftime("%Y-%m-%d %H:%M")
+    caption = Vars.CAPTION.format(date_hour=date_hour)
 
     if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
 
         await c.send_message(
             chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
-            text=msg_text,
-            entities=entities,
+            text=caption,
+            # entities=entities,
             reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
@@ -42,16 +47,20 @@ async def forward_message_photo(c, m):
     print(m)
 
     chat_id = m.chat.id
-    caption_entities = m.caption_entities
-    caption = m.caption
+    # caption_entities = m.caption_entities
+    # caption = m.caption
     photo = m.photo.file_id
+
+    now = datetime.now()
+    date_hour = now.strftime("%Y-%m-%d %H:%M")
+    caption = Vars.CAPTION.format(date_hour=date_hour)
 
     if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
         await c.send_photo(
             chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             photo=photo,
             caption=caption,
-            caption_entities=caption_entities,
+            # caption_entities=caption_entities,
             reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
@@ -60,16 +69,21 @@ async def forward_message_photo(c, m):
 async def forward_message_video(c, m):
 
     chat_id = m.chat.id
-    caption_entities = m.caption_entities
-    caption = m.caption
+    # caption_entities = m.caption_entities
+    # caption = m.caption
     video = m.video.file_id
+
+    now = datetime.now()
+    date_hour = now.strftime("%Y-%m-%d %H:%M")
+    caption = Vars.CAPTION.format(date_hour=date_hour)
+
 
     if chat_id in [Vars.WINNING_LAB_CHANNEL_ID, Vars.DAILY_WINNING_CHANNEL_ID]:
         await c.send_video(
             chat_id=Vars.DROPSHIPPING_COMMUNITY_GROUP_ID,
             video=video,
             caption=caption,
-            caption_entities=caption_entities,
+            # caption_entities=caption_entities,
             reply_to_message_id=Vars.SEGNALI_PODOTTI_TOPIC_ID
         )
 
