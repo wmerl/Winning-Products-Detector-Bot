@@ -261,8 +261,6 @@ async def forward_message_text(c: Client, m):
 
 
 
-
-
 web_app = Flask(__name__)
 
 
